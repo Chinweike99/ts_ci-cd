@@ -1,29 +1,23 @@
-import { FlatCompat, ESLintRecommended } from '@eslint/eslintrc';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
-import prettierPlugin from 'eslint-plugin-prettier';
-const compat = new FlatCompat({ recommendedConfig: ESLintRecommended });
+// eslint.config.js
+import { FlatCompat } from '@eslint/eslintrc';
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+const compat = new FlatCompat();
 
 export default [
-  ...compat.extends('eslint:recommended'),
-
-  {
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-      prettier: prettierPlugin,
-    },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...compat.config({
+    extends: [
+      'plugin:@typescript-eslint/recommended',
+      'prettier'
+    ],
+    plugins: ['prettier'],
     rules: {
       'prettier/prettier': 'error',
-      '@typescript-eslint/no-explicit-any': 'off',
-    },
-  },
-
-  ...compat.extends('plugin:prettier/recommended'),
+      '@typescript-eslint/explicit-function-return-type': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
+    }
+  })
 ];
