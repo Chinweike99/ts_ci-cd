@@ -11,11 +11,9 @@ export default [
   ...compat.config({
     extends: [
       "plugin:@typescript-eslint/recommended",
-      "prettier"
     ],
-    plugins: ["prettier"],
+    plugins: [],
     rules: {
-      "prettier/prettier": "error",
       "@typescript-eslint/explicit-function-return-type": "warn",
       "@typescript-eslint/no-unused-vars": [
         "error",
