@@ -27,7 +27,11 @@ jobs:
 
     - name: Run tests
       run: npm test
-  
+
+    - run: npx prettier --write .
+    - run: npm run lint -- --fix
+
+
     - name: Build project
       run: npm run build 
 
