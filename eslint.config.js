@@ -4,7 +4,7 @@ import js from "@eslint/js";
 import parser from "@typescript-eslint/parser";
 import plugin from "@typescript-eslint/eslint-plugin";
 
-const compat = new FlatCompat();
+// const compat = new FlatCompat();
 
 export default [
   js.configs.recommended,
@@ -28,6 +28,16 @@ export default [
         "error",
         { argsIgnorePattern: "^_" },
       ],
+    },
+  },
+  {
+    files: ["**/*.test.ts"],
+    languageOptions: {
+      globals: {
+        describe: true,
+        test: true,
+        expect: true,
+      },
     },
   },
 ];
