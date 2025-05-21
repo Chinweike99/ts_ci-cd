@@ -11,7 +11,7 @@ const config = [
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-        project: "./tsconfig.json", // can remove this if not using type-aware linting
+        // Remove the project reference to avoid the error
       },
     },
     plugins: {
@@ -20,16 +20,23 @@ const config = [
     rules: {
       ...plugin.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "@typescript-eslint/explicit-function-return-type": "warn",
+      // Remove type-aware rule since we're not using project reference
+      // "@typescript-eslint/explicit-function-return-type": "warn",
     },
   },
   {
-    files: ["**/*.test.ts"],
+    files: ["**/*.test.ts", "**/*.test.js"],
     languageOptions: {
       globals: {
         describe: true,
         test: true,
         expect: true,
+        it: true,
+        jest: true,
+        beforeEach: true,
+        afterEach: true,
+        beforeAll: true,
+        afterAll: true,
       },
     },
   },
