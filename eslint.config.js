@@ -1,15 +1,13 @@
-import { FlatCompat } from '@eslint/eslintrc';
+import { FlatCompat, ESLintRecommended } from '@eslint/eslintrc';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import prettierPlugin from 'eslint-plugin-prettier';
 
-const compat = new FlatCompat();
+const compat = new FlatCompat({ recommendedConfig: ESLintRecommended });
 
 export default [
-  // Use the recommended ESLint config
   ...compat.extends('eslint:recommended'),
 
-  // Use TypeScript parser and plugin
   {
     languageOptions: {
       parser: tsParser,
@@ -28,6 +26,5 @@ export default [
     },
   },
 
-  // Prettier recommended config
   ...compat.extends('plugin:prettier/recommended'),
 ];
